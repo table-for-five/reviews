@@ -10,31 +10,28 @@ db.once('open', function() {
 
 let reviewSchema = new mongoose.Schema({
   restaurantId: Number,
-  reviewId: Number,
-  rating: [{
+  rating: {
     overall: Number,
     food: Number,
     service: Number,
     ambience: Number,
     value: Number
-  }],
+  },
   reviews: [{
-      reviewId: Number,
-      userId: Number,
       username: String,
-      date: Date,
+      date: String,
       location: String,
       reviewInfo: String,
-      rating: [{
+      rating: {
           overall: Number,
           food: Number,
           service: Number,
           ambience: Number,
           value: Number
-      }]
+      }
   }]
 
-});no
+});
 
 let Review = mongoose.model('Review', reviewSchema);
 
