@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/');
+mongoose.connect('mongodb://localhost/reviews');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -8,7 +8,7 @@ db.once('open', function() {
   console.log('database connected')
 });
 
-let reviewSchema = new mongoose.Schema({
+let restaurantSchema = new mongoose.Schema({
   restaurantId: Number,
   rating: {
     overall: Number,
@@ -33,14 +33,14 @@ let reviewSchema = new mongoose.Schema({
 
 });
 
-let Review = mongoose.model('Review', reviewSchema);
+let Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
-Review.create({ restaurantId: 1009, reviewId: 2000 }, function (err, results) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(results)
-    }
-});
+// Review.create({ restaurantId: 1009, reviewId: 2000 }, function (err, results) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log(results)
+//     }
+// });
 
-module.exports Review = Review;
+module.exports.Restaurant = Restaurant;
