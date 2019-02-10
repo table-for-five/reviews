@@ -1,10 +1,13 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 const port = 7888
 
 const db = require('../database/index.js')
 
-app.use(express.static('public'))
+// app.get('/', (req, res) => res.send())
+// app.use(express.static('../client/public/dist'))
+app.use(express.static(__dirname + '/../public/dist'))
 
 app.listen(port, () => console.log(`app listening on port ${port}!`))
 
