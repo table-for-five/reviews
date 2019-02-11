@@ -24,6 +24,7 @@
   "homepage": "https://github.com/table-for-five/reviews#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "mongoose": "^5.4.10",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "webpack-dev-server": "^3.1.14"
