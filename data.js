@@ -21,7 +21,7 @@ function newReview () {
             username: faker.internet.userName(),
             date: faker.date.between('2018-05-01', '2019-02-01'),
             location: faker.address.city() + ', ' + faker.address.stateAbbr(),
-            reviewInfo: faker.lorem.paragraph({min:1, max:3}),
+            reviewInfo: faker.lorem.paragraph(5),
             rating: {
                 overall: faker.random.number({min:1, max:5}),
                 food: faker.random.number({min:1, max:5}),
@@ -32,28 +32,36 @@ function newReview () {
         }
         reviewArr.push(reviews);
     }
-    // reviewArr.reduce((acc, value) => acc += value.overall, 0) / reviewArr.length;
-    // reviewArr.reduce((acc, value) => acc += value.food, 0) / reviewArr.length;
-    // reviewArr.reduce((acc, value) => acc += value.service, 0) / reviewArr.length;
-    // reviewArr.reduce((acc, value) => acc += value.ambience, 0) / reviewArr.length;
-    // reviewArr.reduce((acc, value) => acc += value.value, 0) / reviewArr.length;
-    //save  each
 
     return reviewArr
 }
 
+
+
 function newRestaurant (i) {
-    let restaurantId = i
-    reviews = newReview();
-    return {
-        restaurantId,
-        reviews
-    }
+        let restaurantId = i;
+
+        reviews = newReview();
+
+        let rating = {};
+          rating.avgOverall = Number((reviews.reduce((acc, value) => acc += value.rating.overall, 0) / reviews.length).toFixed(1));
+          rating.avgFood = Number((reviews.reduce((acc, value) => acc += value.rating.food, 0) / reviews.length).toFixed(1));
+          rating.avgService = Number((reviews.reduce((acc, value) => acc += value.rating.service, 0) / reviews.length).toFixed(1));
+          rating.avgAmbience = Number((reviews.reduce((acc, value) => acc += value.rating.ambience, 0) / reviews.length).toFixed(1));
+          rating.avgValue = Number((reviews.reduce((acc, value) => acc += value.rating.value, 0) / reviews.length).toFixed(1));
+        console.log(rating);
+        return {
+            restaurantId,
+            rating,
+            reviews
+        }
 }
 
 var restaurantArr = [];
+
 for (let i = 1; i < 100; i++) {
-  restaurantArr.push(newRestaurant());
+
+  restaurantArr.push(newRestaurant(i));
 }
 
 db.Restaurant.insertMany(restaurantArr, function(err, docs) {
@@ -63,14 +71,3 @@ db.Restaurant.insertMany(restaurantArr, function(err, docs) {
     console.log('saved')
   }
 });
-
-
-//or one big array with all reviews ... use insert many mongodb
-
-// rating: [{
-//     overall: faker.random.number({min:1, max:5}),
-//     food: faker.random.number({min:1, max:5}),
-//     service: faker.random.number({min:1, max:5}),
-//     ambience: faker.random.number({min:1, max:5}),
-//     value: faker.random.number({min:1, max:5})
-//   }],

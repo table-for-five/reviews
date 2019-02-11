@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/reviews');
+// mongoose.connect("mongodb://localhost:7888/reviews", { useNewUrlParser: true });
+
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -11,11 +13,11 @@ db.once('open', function() {
 let restaurantSchema = new mongoose.Schema({
   restaurantId: Number,
   rating: {
-    overall: Number,
-    food: Number,
-    service: Number,
-    ambience: Number,
-    value: Number
+    avgOverall: Number,
+    avgFood: Number,
+    avgService: Number,
+    avgAmbience: Number,
+    avgValue: Number
   },
   reviews: [{
       username: String,
