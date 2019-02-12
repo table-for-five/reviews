@@ -4,38 +4,38 @@ mongoose.connect('mongodb://localhost/reviews');
 // mongoose.connect("mongodb://localhost:7888/reviews", { useNewUrlParser: true });
 
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('database connected')
+db.once('open', () => {
+  console.log('database connected');
 });
 
-let restaurantSchema = new mongoose.Schema({
+const restaurantSchema = new mongoose.Schema({
   restaurantId: Number,
   rating: {
     avgOverall: Number,
     avgFood: Number,
     avgService: Number,
     avgAmbience: Number,
-    avgValue: Number
+    avgValue: Number,
   },
   reviews: [{
-      username: String,
-      date: String,
-      location: String,
-      reviewInfo: String,
-      rating: {
-          overall: Number,
-          food: Number,
-          service: Number,
-          ambience: Number,
-          value: Number
-      }
-  }]
+    username: String,
+    date: String,
+    location: String,
+    reviewInfo: String,
+    rating: {
+      overall: Number,
+      food: Number,
+      service: Number,
+      ambience: Number,
+      value: Number,
+    },
+  }],
 
 });
 
-let Restaurant = mongoose.model('Restaurant', restaurantSchema);
+const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
 // Review.create({ restaurantId: 1009, reviewId: 2000 }, function (err, results) {
 //     if (err) {
