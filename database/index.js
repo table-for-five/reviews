@@ -37,12 +37,21 @@ const restaurantSchema = new mongoose.Schema({
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
-// Review.create({ restaurantId: 1009, reviewId: 2000 }, function (err, results) {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       console.log(results)
-//     }
-// });
+
+const findOneRestaurant = function (callback) {
+  return Restaurant.findOne({ restaurantId: 5 }, (err, restaurant) => {
+    if (err) {
+      callback(err, null);
+      console.log('error');
+    } else {
+      callback(null, restaurant);
+    }
+  });
+};
+
+
+// const findOneRestaurant = db.restaurants.findOne({ restaurantId: 2 });
+
 
 module.exports.Restaurant = Restaurant;
+module.exports.findOneRestaurant = findOneRestaurant;
