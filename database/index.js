@@ -13,11 +13,11 @@ db.once('open', () => {
 const restaurantSchema = new mongoose.Schema({
   restaurantId: Number,
   rating: {
-    avgOverall: Number,
-    avgFood: Number,
-    avgService: Number,
-    avgAmbience: Number,
-    avgValue: Number,
+    Overall: Number,
+    Food: Number,
+    Service: Number,
+    Ambience: Number,
+    Value: Number,
   },
   reviews: [{
     username: String,
@@ -42,16 +42,11 @@ const findOneRestaurant = function (callback) {
   return Restaurant.findOne({ restaurantId: 5 }, (err, restaurant) => {
     if (err) {
       callback(err, null);
-      console.log('error');
     } else {
       callback(null, restaurant);
     }
   });
 };
-
-
-// const findOneRestaurant = db.restaurants.findOne({ restaurantId: 2 });
-
 
 module.exports.Restaurant = Restaurant;
 module.exports.findOneRestaurant = findOneRestaurant;

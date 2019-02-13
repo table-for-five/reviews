@@ -5,15 +5,6 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-// function overallAvg (arr) {
-//     let sum = 0;
-//     for (var i = 0; i < reviewArr; i++) {
-//         sum += arr.rating.overall;
-//     }
-//     return sum/arr.length;
-// }
-
-
 function newReview() {
   const reviewArr = [];
   for (let i = 1; i <= getRandomInt(50); i++) {
@@ -43,12 +34,18 @@ function newRestaurant(i) {
   const reviews = newReview();
 
   const rating = {};
-  rating.avgOverall = Number((reviews.reduce((acc, value) => acc += value.rating.overall, 0) / reviews.length).toFixed(1));
-  rating.avgFood = Number((reviews.reduce((acc, value) => acc += value.rating.food, 0) / reviews.length).toFixed(1));
-  rating.avgService = Number((reviews.reduce((acc, value) => acc += value.rating.service, 0) / reviews.length).toFixed(1));
-  rating.avgAmbience = Number((reviews.reduce((acc, value) => acc += value.rating.ambience, 0) / reviews.length).toFixed(1));
-  rating.avgValue = Number((reviews.reduce((acc, value) => acc += value.rating.value, 0) / reviews.length).toFixed(1));
-  console.log(rating);
+  rating.avgOverall = Number((reviews.reduce((acc, value) => acc += value.rating.overall, 0)
+    / reviews.length).toFixed(1));
+  rating.avgFood = Number((reviews.reduce((acc, value) => acc += value.rating.food, 0)
+    / reviews.length).toFixed(1));
+  rating.avgService = Number((reviews.reduce((acc, value) => acc += value.rating.service, 0)
+    / reviews.length).toFixed(1));
+  rating.avgAmbience = Number((reviews.reduce((acc, value) => acc += value.rating.ambience, 0)
+    / reviews.length).toFixed(1));
+  rating.avgValue = Number((reviews.reduce((acc, value) => acc += value.rating.value, 0)
+    / reviews.length).toFixed(1));
+
+
   return {
     restaurantId,
     rating,
