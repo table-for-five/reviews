@@ -22,3 +22,14 @@ app.get('/restaurants', (req, res) => {
     }
   });
 });
+
+// app.get('/restaurants', function(req, res){
+//   db.Restaurant.find(function(err, docs){
+//       if (err) {
+//           res.statusCode = 404;
+//           res.send('error')
+//       } else {
+//           res.send(docs);
+//       }
+//   })
+// })

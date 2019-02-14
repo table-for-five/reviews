@@ -13,11 +13,11 @@ db.once('open', () => {
 const restaurantSchema = new mongoose.Schema({
   restaurantId: Number,
   rating: {
-    Overall: Number,
-    Food: Number,
-    Service: Number,
-    Ambience: Number,
-    Value: Number,
+    avgOverall: Number,
+    avgFood: Number,
+    avgService: Number,
+    avgAmbience: Number,
+    avgValue: Number,
   },
   reviews: [{
     username: String,
@@ -25,11 +25,11 @@ const restaurantSchema = new mongoose.Schema({
     location: String,
     reviewInfo: String,
     rating: {
-      overall: Number,
-      food: Number,
-      service: Number,
-      ambience: Number,
-      value: Number,
+      individualOverall: Number,
+      individualFood: Number,
+      individualService: Number,
+      individualAmbience: Number,
+      individualValue: Number,
     },
   }],
 
@@ -39,7 +39,7 @@ const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
 
 const findOneRestaurant = function (callback) {
-  return Restaurant.findOne({ restaurantId: 5 }, (err, restaurant) => {
+  return Restaurant.findOne({ restaurantId: 26 }, (err, restaurant) => {
     if (err) {
       callback(err, null);
     } else {
